@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table{
+            width: 50%;
+        }
+        th,td{
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <h1>Employee Details</h1>
+        <table border="3px">
+            <tr>
+                <th>Empno</th>
+                <th>Ename</th>
+                <th>Job</th>
+                <!-- <th>Mgr</th>
+                <th>Hiredate</th>
+                <th>Sal</th>
+                <th>Comm</th>
+                <th>Deptno</th>
+                <th>Dept name</th>
+                <th>Dept Loc</th> -->
+                <th>mgr empno</th>
+                <th>mgr name</th>
+                <th>mgr job</th>
+            </tr>
+            {% for EO in QSLMEO %}
+            <tr>
+                <td>{{EO.empno}}</td>
+                <td>{{EO.ename}}</td>
+                <td>{{EO.job}}</td>
+                <!-- <td>{{EO.mgr.empno}}</td>
+                <td>{{EO.hiredate}}</td>
+                <td>{{EO.sal}}</td>
+                <td>{{EO.comm}}</td>
+                <td>{{EO.deptno.deptno}}</td>
+                <td>{{EO.deptno.dname}}</td>
+                <td>{{EO.deptno.loc}}</td> -->
+                <td>{{EO.mgr.empno}}</td>
+                <td>{{EO.mgr.ename}}</td>
+                <td>{{EO.mgr.job}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </center>
+</body>
+</html>

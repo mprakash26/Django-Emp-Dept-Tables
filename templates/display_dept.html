@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dept Table</title>
+</head>
+<style>
+    table{
+        width: 30px;
+    }
+    tr,td{
+        padding: 20px;
+    }
+    tr{
+        height: 40px;
+    }
+</style>
+<body>
+    <center>
+        <h1>Dept Details</h1>
+        <table border="3px">
+            <tr>
+                <th>id</th>
+                <th>Deptno</th>
+                <th>Dname</th>
+                <th>Loc</th>
+            </tr>
+            {% for DO in QSLDO %}
+            <tr>
+                <td>{{DO.id}}</td>
+                <td>{{DO.deptno}}</td>
+                <td>{{DO.dname}}</td>
+                <td>{{DO.loc}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </center>
+</body>
+</html>
