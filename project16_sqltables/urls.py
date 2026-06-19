@@ -27,4 +27,7 @@ urlpatterns = [
     path('display_dept/',display_dept,name='display_dept'),
     path('display_emp/',display_emp,name='display_emp'),
     path('emptomgr/',emptomgr,name='emptomgr'),
+    path('empdeptmgrjoin/',empdeptmgrjoin,name='empdeptmgrjoin'),
+    #path('DeptToEmpjoin/',DeptToEmpjoin,name='DeptToEmpjoin'),
+    #path('display_agganno/',display_agganno,name='display_agganno'),
 ]

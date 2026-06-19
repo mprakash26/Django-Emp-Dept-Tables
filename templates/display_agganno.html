@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+        <table border="2px">
+            <h1>Display_Agg-Anno</h1>
+            <tr>
+                <th>empno</th>
+                <th>ename</th>
+                <th>job</th>
+                <th>sal</th>
+                <th>hiredate</th>
+                <th>mgr</th>
+                <th>comm</th>
+                <th>deptno</th>
+                <th>mgr ename</th>
+                <th>mgr job</th>
+                <th>mgr sal</th>
+                <th>mgr loc</th>
+            </tr>
+            {% for EO in QSLEDO %}
+            <tr>
+                <td>{{EO.empno}}</td>
+                <td>{{EO.ename}}</td>
+                <td>{{EO.job}}</td>
+                <td>{{EO.sal}}</td>
+                <td>{{EO.hiredate}}</td>
+                <td>{{EO.mgr}}</td>
+                <td>{{EO.comm}}</td>
+                <td>{{EO.deptno}}</td>
+                <td>{{EO.mgr.ename}}</td>
+                <td>{{EO.mgr.job}}</td>
+                <td>{{EO.mgr.sal}}</td>
+                <td>{{EO.mgr.dept.loc}}</td>
+            </tr>
+            {% endfor %}
+        
+        </table>
+    </center>
+</body>
+</html>

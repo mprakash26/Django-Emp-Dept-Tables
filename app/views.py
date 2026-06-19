@@ -3,6 +3,9 @@ from django.shortcuts import render
 # Create your views here.
 from app.models import*
 from django.http import HttpResponse
+from django.db.models import *
+from django.db.models.functions import Length
+
 
 def insert_dept(request):
     dpt=int(input('Enter Deptno: '))
@@ -67,7 +70,59 @@ def emptomgr(request):
      QSLEDMO=Emp.objects.select_related('deptno','mgr').all()
      QSLEDMO=Emp.objects.filter(deptno__deptno=20)
      QSLEDMO=Emp.objects.filter(mgr__ename='KING')
+     QSLEDMO=Emp.objects.select_related('deptno','mgr').filter(deptno=20) 
+     QSLEDMO=Emp.objects.select_related('deptno','mgr').filter(deptno__dname='ACCOUNTING')
+
      d={'QSLEDMO':QSLEDMO}
      return render(request,'emptomgr.html',d)
 
-    
+
+def empdeptmgrjoin(request):
+     obj=Emp.objects.all()
+     obj=Emp.objects.select_related('deptno','mgr').filter(deptno=20) 
+     d={'obj':obj}
+     return render(request,'empdeptmgrjoin.html',d)
+
+
+def DeptToEmpjoin(request):
+     ADEO=Dept.objects.prefetch_related('emp_set').all()
+     ADEO=Dept.objects.prefetch_related('emp_set').filter(dname__in=('Accounting','Research'))
+     ADEO=Dept.objects.prefetch_related('emp_set').filter(loc='New York')
+     ADEO=Dept.objects.prefetch_related('emp_set').filter(deptno=20)
+     ADEO=Dept.objects.prefetch_related(Prefetch('emp_set',queryset=Emp.objects.filter(sal__gt=4000)))
+     ADEO=Dept.objects.prefetch_related(Prefetch('emp_set',queryset=Emp.objects.filter(ename='BLAKE')))
+     
+     d={'ADEO':ADEO}
+     return render(request,'DeptToEmpjoin.html',d)
+
+
+# def display_agganno(request):
+#      QSLEDO=Emp.objects.all()
+#      QSLEDO=Emp.objects.select_related('deptno').filter(deptno__dname='Accounting')
+#      #print(Emp.objects.aggregate(Avg('sal')))
+#      #print(Emp.objects.aggregate(Sum('sal')))
+#      #print(Emp.objects.aggregate(Max('sal')))
+#      #print(Emp.objects.aggregate(Min('sal')))
+#      #print(Emp.objects.aggregate(Avg('sal'))['sal__avg'])
+#      #print(Emp.objects.aggregate(avs=Avg('sal'))['avs'])
+#      #avgsal=Emp.objects.aggregate(avs=Avg('sal'))['avs']
+#      #QSLEDO=Emp.objects.select_related('deptno').filter(sal__lt=avgsal)
+#      #QSLEDO=Emp.objects.select_related('deptno').filter(sal__gt=avgsal)
+
+#      data=Dept.objects.values('deptno').filter(dname='Research')
+#      print(data)
+#      print(data[0])
+#      print(data[0]['deptno'])
+#      Emp.objects.filter(deptno=data[0]['deptno'])
+#      QSLEDO=Emp.objects.select_related('deptno').annotate(loen=Length('ename')).filter(loen=5)
+#      print(Emp.objects.values('deptno').annotate(Avg('sal')))
+#      print(Emp.objects.values('deptno').annotate(Avg('sal')).filter(deptno=10))
+#      d={'QSLEDO':QSLEDO}
+#      return render(request,'display_agganno.html',d)
+
+
+
+
+
+
+
